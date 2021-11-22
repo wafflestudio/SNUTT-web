@@ -1,45 +1,41 @@
 import styled from "@emotion/styled"
-import { CategoryList } from "./CategoryList"
+import { TagGroupList } from "./TagGroupList"
 import { useMemo, useState } from "react"
 import { TagList } from "./TagList"
-
-type Tag = {
-  name: string
-  category: Category
-}
-type Category = {
-  name: string
-}
+import { TagDTO, TagGroupDTO } from "@lib/dto/core/tag"
 
 interface Props {
-  selectedTags: Tag[]
-  tags: Tag[]
-  categories: Category[]
-  onSelectTag: (tag: Tag) => void
-  onDeselectTag: (tag: Tag) => void
+  selectedTags: TagDTO[]
+  tagGroupsWithTags: { tagGroup: TagGroupDTO; tags: TagDTO[] }[]
+  onSelectTag: (tag: TagDTO) => void
+  onDeselectTag: (tag: TagDTO) => void
 }
 
 export const SearchOptionSheet: React.FC<Props> = ({
   selectedTags,
-  tags,
-  categories,
+  tagGroupsWithTags,
   onSelectTag,
   onDeselectTag,
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<Category>(
-    categories[0],
+  const [selectedTagGroup, setSelectedTagGroup] = useState<TagGroupDTO>(
+    tagGroupsWithTags[0]?.tagGroup,
   )
 
   const visibleTags = useMemo(() => {
-    return tags.filter((it) => it.category.name === selectedCategory.name)
-  }, [tags, selectedCategory])
+    return (
+      tagGroupsWithTags.find((it) => it.tagGroup.id === selectedTagGroup.id)
+        ?.tags ?? []
+    )
+  }, [selectedTagGroup, tagGroupsWithTags])
+
+  const tagGroups = tagGroupsWithTags.map((it) => it.tagGroup)
 
   return (
     <div>
-      <CategoryList
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategorySelectionChange={setSelectedCategory}
+      <TagGroupList
+        tagGroups={tagGroups}
+        selectedTagGroup={selectedTagGroup}
+        onTagGroupSelectionChange={setSelectedTagGroup}
       />
       <TagList
         tags={visibleTags}

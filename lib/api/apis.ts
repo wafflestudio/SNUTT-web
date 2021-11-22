@@ -1,5 +1,6 @@
 import { ReviewDetailDTO, ReviewDTO } from "@lib/dto/review"
 import { SearchResultDTO } from "@lib/dto/searchResult"
+import { GetTagInfos } from "../dto/tagInfos"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
@@ -94,6 +95,40 @@ export function fetchMainReviews(): Promise<ReviewDetailDTO[]> {
               "중간 리뷰. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요 ",
           },
         ]),
+      1000,
+    )
+  })
+}
+
+export function fetchTagInfos(): Promise<GetTagInfos> {
+  return new Promise((resolve) => {
+    setTimeout(
+      () =>
+        resolve({
+          results: [
+            {
+              tags: [
+                { name: "태그A1", id: 101 },
+                { name: "태그A2", id: 102 },
+              ],
+              tagGroup: { name: "태그그룹A", id: 1 },
+            },
+            {
+              tags: [
+                { name: "태그B1", id: 201 },
+                { name: "태그B2", id: 202 },
+              ],
+              tagGroup: { name: "태그그룹B", id: 2 },
+            },
+            {
+              tags: [
+                { name: "태그C1", id: 301 },
+                { name: "태그C2", id: 302 },
+              ],
+              tagGroup: { name: "태그그룹C", id: 3 },
+            },
+          ],
+        }),
       1000,
     )
   })

@@ -2,6 +2,7 @@ import styled from "@emotion/styled"
 import { Searchbar } from "./__components__/Searchbar"
 import { useSearchContainer } from "./__containers__/search"
 import { SearchResultItem } from "./__components__/SearchResultItem"
+import { SearchOptionSheet } from "./__components__/SearchOptionSheet"
 
 export const SearchImpl = () => {
   const { data } = useSearchContainer()
@@ -16,6 +17,7 @@ export const SearchImpl = () => {
           <SearchNoResult>강의명, 교수명으로 검색하세요</SearchNoResult>
         )}
       </SearchResultList>
+      <SearchOptionSheet />
     </Wrapper>
   )
 }

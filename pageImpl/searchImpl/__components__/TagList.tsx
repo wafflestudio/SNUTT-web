@@ -1,11 +1,9 @@
-type Tag = {
-  name: string
-}
+import { TagDTO } from "@lib/dto/core/tag"
 
 interface Props {
-  tags: Tag[]
-  selectedTags: Tag[]
-  onToggleTag: (tag: Tag) => void
+  tags: TagDTO[]
+  selectedTags: TagDTO[]
+  onToggleTag: (tag: TagDTO) => void
 }
 
 export const TagList: React.FC<Props> = ({
@@ -28,7 +26,7 @@ export const TagList: React.FC<Props> = ({
 }
 
 const TagItem: React.FC<{
-  tag: Tag
+  tag: TagDTO
   isSelected: boolean
   onClick: () => void
 }> = ({ tag, isSelected, onClick }) => {
