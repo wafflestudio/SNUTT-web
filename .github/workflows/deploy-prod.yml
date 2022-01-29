@@ -37,3 +37,13 @@ jobs:
       run: |
         aws s3 sync ./out $AWS_S3_BUCKET --delete
         aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+
+    - name: Slack Notify
+      uses: rtCamp/action-slack-notify@v2.1.2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_TITLE: NEW RELEASE
+        SLACK_USERNAME: snutt-ev-web
+        SLACK_ICON: https://user-images.githubusercontent.com/35535636/151668077-9b0e8f5c-783a-4bfb-b71e-fc043cfc7395.jpg
+        SLACK_MESSAGE: Check <https://s3.console.aws.amazon.com/s3/buckets/snutt-ev-web?region=ap-northeast-2&tab=objects|S3> for updated environment
+        SLACK_FOOTER: https://snutt-ev-web.wafflestudio.com
