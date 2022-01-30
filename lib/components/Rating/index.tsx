@@ -18,6 +18,7 @@ export const Rating = ({ rating, size }: Props) => {
           height={size}
           width={size}
           style={{ marginRight: 1 }}
+          key={i}
         />,
       )
     } else if (rating - i <= -0.25 && rating - i >= -0.75) {
@@ -26,6 +27,7 @@ export const Rating = ({ rating, size }: Props) => {
           height={size}
           width={size}
           style={{ marginRight: 1 }}
+          key={i}
         />,
       )
     } else {
@@ -34,6 +36,7 @@ export const Rating = ({ rating, size }: Props) => {
           height={size}
           width={size}
           style={{ marginRight: 1 }}
+          key={i}
         />,
       )
     }

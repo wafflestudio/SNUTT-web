@@ -16,7 +16,7 @@ export const SearchImpl = () => {
     currentlyAppliedQuery,
     refreshQueries,
     selectedTextQuery,
-    updateTextQuery
+    updateTextQuery,
   } = useTagContainer()
 
   const { searchResult, fetchNextPage } = useSearchOptionContainer(
@@ -45,7 +45,7 @@ export const SearchImpl = () => {
         {searchResult?.pages ? (
           <React.Fragment>
             {searchResult?.pages?.map((content, i) => (
-              <React.Fragment>
+              <React.Fragment key={i}>
                 {content.content.map((it) => (
                   <SearchResultItem
                     content={it}

@@ -72,7 +72,9 @@ export const MainImpl = () => {
           onChange={handleClickRecommendationTag}
         >
           {recommendationTags.map((it) => (
-            <ToggleButton value={it}>{it.name}</ToggleButton>
+            <ToggleButton value={it} key={it.id}>
+              {it.name}
+            </ToggleButton>
           ))}
         </StyledToggleButtonGroup>
         <CategoryDetail>{selectedTag?.description}</CategoryDetail>
@@ -81,7 +83,7 @@ export const MainImpl = () => {
       {searchResult?.pages ? (
         <React.Fragment>
           {searchResult?.pages?.map((content, i) => (
-            <React.Fragment>
+            <React.Fragment key={i}>
               {content.content.map((it) => (
                 <EvaluationCard evaluation={it} key={it.id} />
               ))}

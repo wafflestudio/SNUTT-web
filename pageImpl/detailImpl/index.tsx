@@ -117,7 +117,7 @@ export const DetailImpl = () => {
             {searchResult?.pages ? (
               <React.Fragment>
                 {searchResult?.pages?.map((content, i) => (
-                  <React.Fragment>
+                  <React.Fragment key={i}>
                     {content.content.map((it) => (
                       <LectureReviewCard
                         review={it}
@@ -214,6 +214,7 @@ const ReviewDiagram = styled.div`
   text-align: center;
   align-self: center;
   padding: 8px 0 8px 0;
+  margin-bottom: 10px;
 `
 
 const DiagramTop = styled.div``
