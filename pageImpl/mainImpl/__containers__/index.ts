@@ -1,5 +1,4 @@
 import {
-  fetchMainReviews,
   fetchLatestLectures,
   getMainTagEvaluations,
   getMainTagInfos,
@@ -10,17 +9,6 @@ import { useInfiniteQuery, useQuery } from "react-query"
 export function useRecommendationTagsContainer() {
   const { data } = useQuery("mainTags", getMainTagInfos)
   return { recommendationTags: data?.tags ?? [] }
-}
-
-export function useMainReviewContainer() {
-  const querySearch = useQuery("reviews/curation", fetchMainReviews)
-
-  const { data, error } = querySearch
-
-  return {
-    curationData: data,
-    error,
-  }
 }
 
 export function useMainEvaluationContainer(selectedTag?: TagDTO) {

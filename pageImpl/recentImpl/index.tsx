@@ -4,7 +4,6 @@ import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { Title01, Title02 } from "@lib/components/Text"
 import { useRouter } from "next/router"
 import { RecentLectureItem } from "./__components__/RecentResultItem"
-import { useRecentLectureContainer } from "./__containers__"
 import { useMainLatestLectureContainer } from "@pageImpl/mainImpl/__containers__"
 
 export const RecentImpl = () => {
