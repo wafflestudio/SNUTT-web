@@ -8,6 +8,7 @@ import { CollapsableText } from "@lib/components/CollapsableText"
 import { EvaluationDTO } from "@lib/dto/core/evaluation"
 import MoreVerticalIcon from "../../../public/icons/more_vertical.svg"
 import { css } from "@emotion/react"
+import { SemesterIntToString } from "@lib/util"
 
 interface Props {
   review: EvaluationDTO
@@ -27,7 +28,7 @@ export const LectureReviewCard = ({
           <SideInfo>
             <Rating rating={review.rating} size={12} />
             <Semester>
-              {review.year}년 {review.semester}학기 수강
+              {review.year}년 {SemesterIntToString(review.semester)}학기
             </Semester>
             <div style={{ flexGrow: 1 }} />
             <div onClick={onMoreClick}>
@@ -35,9 +36,13 @@ export const LectureReviewCard = ({
             </div>
           </SideInfo>
         </Header>
-        <Review>
-          <CollapsableText text={review.content} />
-        </Review>
+        {review.content === "" ? (
+          <></>
+        ) : (
+          <Review>
+            <CollapsableText text={review.content} />
+          </Review>
+        )}
       </Contents>
     </Wrapper>
   )
@@ -45,7 +50,6 @@ export const LectureReviewCard = ({
 
 const Wrapper = styled.div<{ isMintColor: boolean }>`
   width: calc(100% + 40px);
-  padding: 20px 20px 5px 20px;
   box-sizing: border-box;
   margin-left: -20px;
   background-color: ${(props) =>
@@ -53,11 +57,12 @@ const Wrapper = styled.div<{ isMintColor: boolean }>`
 `
 
 const Contents = styled.div`
-  border-bottom: 1px solid ${COLORS.gray};
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding-bottom: 15px;
+  padding: 20px 0;
+  margin: 0 20px;
+  border-bottom: 1px solid ${COLORS.gray};
 `
 
 const Header = styled.div`
@@ -65,7 +70,6 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
 `
 
 const Semester = styled(Detail)`
@@ -73,6 +77,7 @@ const Semester = styled(Detail)`
   text-align: left;
   font-size: 10px;
   margin-left: 8px;
+  line-height: 18px;
 `
 
 const SideInfo = styled.div`
@@ -84,4 +89,5 @@ const SideInfo = styled.div`
 const Review = styled.div`
   display: inline-block;
   width: 100%;
+  margin-top: 12px;
 `
