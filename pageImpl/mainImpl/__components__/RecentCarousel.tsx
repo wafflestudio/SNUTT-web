@@ -15,7 +15,7 @@ export const RecentCarousel = ({ lectureList }: Props) => {
     <Wrapper>
       {/* <FakeSearchbar /> */}
       <CarouselHeader>
-        <Title01>최근 강의평을 남겨주세요</Title01>
+        <Title01>지난 학기 강의평을 남겨주세요</Title01>
         <Subheading02
           onClick={() => {
             router.push("/recent")

@@ -6,14 +6,17 @@ import SvgTagBlack from "@lib/components/Icons/SvgTagBlack"
 import SvgPersonBlack from "@lib/components/Icons/SvgPersonBlack"
 import SvgWrite from "@lib/components/Icons/SvgWrite"
 import { LatestLectureDTO } from "@lib/dto/core/latestLecture"
+import { useRouter } from "next/router"
 
 interface Props {
   content: LatestLectureDTO
 }
 
 export const RecentLectureItem: React.FC<Props> = ({ content }) => {
+  const router = useRouter()
+
   return (
-    <Wrapper>
+    <Wrapper onClick={() => router.push(`/create/${content.id}`)}>
       <ItemTop>
         <SubjectText>{content.title}</SubjectText>
       </ItemTop>
@@ -44,9 +47,8 @@ export const RecentLectureItem: React.FC<Props> = ({ content }) => {
 }
 
 const Wrapper = styled.div`
-  padding-top: 10px;
-  padding-bottom: 12px;
-
+  padding: 10px 0 12px 0;
+  margin: 0 20px 0 20px;
   border-bottom: solid 1px rgba(196, 196, 196, 0.3);
 `
 
