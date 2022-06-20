@@ -150,9 +150,6 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
             <EmailInput
               placeholder={"이메일을 입력하세요"}
               onChange={(e) => {
-                if (verificationState === VerificationState.INVALID_NUMBER) {
-                  setVerificationState(VerificationState.READY)
-                }
                 setEmail(e.target.value)
               }}
             />
@@ -177,6 +174,9 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
               type="number"
               placeholder={"인증번호 6자리를 입력하세요"}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                if (verificationState === VerificationState.INVALID_NUMBER) {
+                  setVerificationState(VerificationState.READY)
+                }
                 setVerificationNumber(parseInt(e.target.value))
               }}
             />
