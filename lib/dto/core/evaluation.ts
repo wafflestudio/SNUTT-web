@@ -4,9 +4,9 @@ export interface EvaluationDTO {
   user_id: string
   content: string
   grade_satisfaction: number
-  teaching_skill: number
-  gains: number
-  life_balance: number
+  teaching_skill: number | null
+  gains: number | null
+  life_balance: number | null
   rating: number
   like_count: number
   dislike_count: number
@@ -15,4 +15,5 @@ export interface EvaluationDTO {
   year: number
   semester: number
   is_modifiable: boolean
+  from_snuev: boolean
 }

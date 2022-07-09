@@ -1,10 +1,11 @@
 import styled from "@emotion/styled"
-import { Detail, Subheading01 } from "@lib/components/Text"
+import { Detail } from "@lib/components/Text"
 import { COLORS } from "@lib/styles/colors"
 import { Rating } from "@lib/components/Rating"
 import { CollapsableText } from "@lib/components/CollapsableText"
 import { EvaluationDTO } from "@lib/dto/core/evaluation"
 import MoreVerticalIcon from "@public/icons/more_vertical.svg"
+import FossilIcon from "@public/icons/fossil.svg"
 import { SemesterIntToString } from "@lib/util"
 
 interface Props {
@@ -25,8 +26,15 @@ export const LectureReviewCard = ({
           <SideInfo>
             <Rating rating={review.rating} size={12} />
             <Semester>
-              {review.year}년 {SemesterIntToString(review.semester)}학기
+              <SemesterText>
+                {review.year}년 {SemesterIntToString(review.semester)}학기
+              </SemesterText>
             </Semester>
+            {review.from_snuev && (
+              <FossilIconWrapper>
+                <FossilIcon />
+              </FossilIconWrapper>
+            )}
             <div style={{ flexGrow: 1 }} />
             <div onClick={onMoreClick}>
               <MoreVerticalIcon />
@@ -68,13 +76,25 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
 `
+const Semester = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
 
-const Semester = styled(Detail)`
+const SemesterText = styled(Detail)`
   color: ${COLORS.darkGray};
   text-align: left;
   font-size: 10px;
   margin-left: 8px;
   line-height: 18px;
+`
+
+const FossilIconWrapper = styled.div`
+  margin-left: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `
 
 const SideInfo = styled.div`
